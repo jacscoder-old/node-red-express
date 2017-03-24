@@ -1,0 +1,17 @@
+{
+  "name": "node-red-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.15.2",
+    "node-red": "^0.16.2",
+    "node-red-contrib-socketio": "^1.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

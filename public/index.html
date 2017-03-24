@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <title>Socket.IO Example</title>
+</head>
+
+<body>
+    <h1>This is only a demo.</h1>
+    <h2>Please press F12 to look at the fake sensor data sent from server socket via pooling at client side. </h1>
+
+    <script>
+        $(function() {
+
+            // connect to server socket
+            var socket = io('http://192.168.0.152:8000'); // it can't use localhost as ip addresss.
+
+            // group of request to get sensor data
+            var emitForAllSensors = function() { 
+                setInterval(function() {
+                    console.log("---------------------------");
+
+                    // light
+                    socket.emit('light', {todo: ''});
+
+                    // humidity
+                    socket.emit('humidity', {todo: ''});
+
+                    // ultraviolet
+                    socket.emit('ultraviolet', {todo: ''});
+
+                    // pressure
+                    socket.emit('pressure', {todo: ''});
+
+                    // temperature
+                    socket.emit('temperature', {todo: ''});
+                }, 1000);
+            };
+
+            // Protocals
+            socket.on('connect', function() {
+                console.log('you have connected!');
+                emitForAllSensors();
+            });
+
+            socket.on('light', function(msg) {
+                console.log('light: ' + msg.light);
+            });
+
+            socket.on('humidity', function(msg) {
+                console.log('humidity: ' + msg.humidity);
+            });
+
+            socket.on('ultraviolet', function(msg) {
+                console.log('ultraviolet: ' + msg.ultraviolet);
+            });
+
+            socket.on('pressure', function(msg) {
+                console.log('pressure: ' + msg.pressure);
+            });
+
+            socket.on('temperature', function(msg) {
+                console.log('temperature: ' + msg.temperature);
+            });
+
+        });
+    </script>
+</body>
+
+</html>
